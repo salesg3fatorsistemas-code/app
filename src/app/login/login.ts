@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class Login {
   
   dataRow = {
-    CD_USUARIO: '',
+    CD_USUARIO: ''  ,
     HS_SENHA:   ''
   }
 

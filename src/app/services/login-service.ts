@@ -6,6 +6,11 @@ import { environment } from '../../environments/environment.development';
 })
 export class LoginService {
 
+  async consultarEntidade(alias: string){
+
+    let request = await fetch('')
+  }
+
   async loginRequest(dataRow: object){
 
     let request = await fetch(environment.API + 'login', {
