@@ -54,6 +54,13 @@ input{
     margin: 0rem .5rem .5rem;
 }
 
+select{
+    display: inline-block;
+    width: calc(100% - 1.5rem);
+    height: 1.25rem;
+    margin: 0rem .5rem .5rem;
+}
+
 button{
     display: inline-block;
     width: calc(100% - 1rem);

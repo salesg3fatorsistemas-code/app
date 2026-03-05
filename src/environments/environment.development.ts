@@ -1,4 +1,7 @@
 export const environment = {
-    API: 'http:localhost:8081/',
-    TOKEN: 'sales2255'
+    API: 'http://localhost:8081/',
+    headers: {
+        "Content-Type":"application/json",
+        TOKEN: "teste"
+    }
 };
