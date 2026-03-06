@@ -1,69 +1,134 @@
-.login-box{
-    position: absolute;
-    top: calc(50% - 20rem / 2);
-    left: calc(50% - 35rem / 2);
-    width: 35rem;
-    height: 20rem;
-    border: 1px solid gray;
+/* Base da tela cheia com fundo suave */
+.login-comp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 1rem);
+    background-color: #f4f7f6; /* Fundo cinza bem claro */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* O "Card" branco de login */
+.login-box {
+    background: #ffffff;
+    width: 100%;
+    max-width: 650px;
+    padding: 2.5rem;
     border-radius: 1rem;
-
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Sombra moderna */
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
-.login-title{
-    display: inline-block;
-    width: 100%;
-    margin: .5rem 0rem;
-
+/* Títulos */
+.login-header {
     text-align: center;
-    font-size: x-large;
-    font-weight: bold;
 }
 
-.login-slogan{
-    display: inline-block;
-    width: 100%;
+.login-title {
+    margin: 0;
+    font-size: 2.2rem;
+    color: #2c3e50;
+    font-weight: 800;
+}
 
-    text-align: center;
+.login-slogan {
+    margin: 0.5rem 0 0;
+    color: #7f8c8d;
+    font-size: 1rem;
     font-style: italic;
 }
 
-.login-img{
-    float: left;
-    width: 10rem;
-    margin: .5rem;
+/* Organização de colunas (Imagem + Form) */
+.login-body {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 }
 
-.login-form{
-    float: right;
-    width: 24rem;
-    margin: 1rem 0rem;
+.login-img-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
 }
 
-label{
-    display: inline-block;
-    width: calc(100% - 2rem);
-    margin: 0rem 1rem;
+.login-img {
+    width: 100%;
+    max-width: 160px;
+}
 
+/* Formulário */
+.login-form {
+    flex: 1.5; /* Ocupa um pouco mais de espaço que a imagem */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #34495e;
+}
+
+/* Estilo unificado para inputs e selects */
+input, select {
+    padding: 0.5rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    background-color: #f8fafc;
+    color: #333;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+/* Efeito ao clicar no campo */
+input:focus, select:focus {
+    border-color: #3b82f6;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* Botão Bonitão */
+.btn-primary {
+    margin-top: 0.5rem;
+    padding: 0.85rem;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
     font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s;
 }
 
-input{
-    display: inline-block;
-    width: calc(100% - 1.5rem);
-    height: 1.25rem;
-    margin: 0rem .5rem .5rem;
+.btn-primary:hover {
+    background-color: #2563eb;
 }
 
-select{
-    display: inline-block;
-    width: calc(100% - 1.5rem);
-    height: 1.25rem;
-    margin: 0rem .5rem .5rem;
+.btn-primary:active {
+    transform: scale(0.98);
 }
 
-button{
-    display: inline-block;
-    width: calc(100% - 1rem);
-    height: 2rem;
-    margin: 0rem .5rem;
+/* Deixa responsivo para celulares */
+@media (max-width: 600px) {
+    .login-body {
+        flex-direction: column;
+    }
+    
+    .login-img {
+        max-width: 120px;
+    }
 }

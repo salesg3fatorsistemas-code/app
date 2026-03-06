@@ -1,0 +1,100 @@
+/* Layout Principal da Tela (Ocupa 100% da altura e largura) */
+.menu-comp {
+    display: flex;
+    height: calc(100vh - 1rem);
+    width: calc(100vw - 1rem);
+    background-color: #f4f7f6; /* Mesmo fundo claro do login */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden; /* Evita rolagem na tela inteira, a rolagem será no conteúdo */
+}
+
+/* ---------------------------------- */
+/* BARRA LATERAL (SIDEBAR)            */
+/* ---------------------------------- */
+.menu-sidebar {
+    width: 260px;
+    background-color: #ffffff;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.05); /* Sombra suave para a direita */
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+    z-index: 10; /* Garante que a sombra fique sobre o fundo cinza */
+}
+
+/* Cabeçalho da Sidebar (Info do Usuário) */
+.menu-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0 0.5rem;
+}
+
+.NM_ENTIDADE {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #2c3e50;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Coloca "..." se o nome for muito grande */
+}
+
+.NM_USUARIO {
+    font-size: 0.85rem;
+    color: #7f8c8d;
+    font-weight: 500;
+}
+
+/* Linha divisória mais moderna */
+.menu-divider {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 1.5rem 0;
+}
+
+/* Navegação e Botões */
+.menu-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.menu-button {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    color: #475569;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+/* Ícones do menu */
+.menu-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: inherit; /* Herda a cor do texto do botão */
+}
+
+/* Efeito ao passar o mouse */
+.menu-button:hover {
+    background-color: #f8fafc;
+    color: #3b82f6; /* Azul primário */
+}
+
+/* Estado Ativo (página atual) gerado pelo routerLinkActive */
+.menu-button.active {
+    background-color: #eff6ff;
+    color: #2563eb;
+    border-right: 3px solid #2563eb; /* Um detalhezinho visual na borda direita */
+}
+
+/* ---------------------------------- */
+/* ÁREA DE CONTEÚDO (ROUTER OUTLET)   */
+/* ---------------------------------- */
+.menu-content {
+    flex: 1; /* Ocupa todo o espaço restante */
+    padding: 2rem;
+    overflow-y: auto; /* Se o conteúdo da tela for grande, rola apenas esta parte */
+}

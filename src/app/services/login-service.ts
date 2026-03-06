@@ -8,6 +8,10 @@ export class LoginService {
 
   urlApi : string = environment.API + 'sessao/'
 
+  ID_ANO: number = 0
+  ID_MES: number = 0
+  DS_MES: string = ''
+
   ID_ENTIDADE : number = 0
   NM_ENTIDADE : string = ''
   ID_USUARIO  : number = 0

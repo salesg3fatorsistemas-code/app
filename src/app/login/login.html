@@ -1,61 +1,64 @@
 <section class="login-comp">
     <div class="login-box">
-        <span class="login-title">
-            Zeno-X
-        </span>
+        
+        <div class="login-header">
+            <h1 class="login-title">Zeno-X</h1>
+            <p class="login-slogan">Gestão Integrada para seu negócio!</p>
+        </div>
 
-        <span class="login-slogan">
-            Gestão Integrada para seu negócio!
-        </span>
+        <div class="login-body">
+            <div class="login-img-container">
+                <img class="login-img" src="users.svg" alt="users">
+            </div>
 
-        <br><br>
+            <div class="login-form">
+                <form (ngSubmit)="userLogin()">
+                    
+                    <div class="input-group">
+                        <label for="NM_ENTIDADE">Entidade:</label>
+                        <input type="text" name="NM_ENTIDADE" id="NM_ENTIDADE" [(ngModel)]="dataRow.NM_ENTIDADE">
+                        
+                    </div>
 
-        <img class="login-img" src="users.svg" alt="users">
+                    <div class="input-group">
+                        <label for="CD_USUARIO">Usuário:</label>
+                        <input type="text" name="CD_USUARIO" id="CD_USUARIO" [(ngModel)]="dataRow.CD_USUARIO" placeholder="Seu usuário">
+                    </div>
+        
+                    <div class="input-group">
+                        <label for="HS_SENHA">Senha:</label>
+                        <input type="password" name="HS_SENHA" id="HS_SENHA" [(ngModel)]="dataRow.HS_SENHA" placeholder="Sua senha">
+                    </div>
 
-        <div class="login-form">
-            <form (ngSubmit)="userLogin()">
-                <label for="NM_ENTIDADE">
-                    Entidade:
-                </label>
+                    <div class="input-group">
+                        <label for="ID_MES">Mês-calendário:</label>
+                        <select name="ID_MES" id="ID_MES" [(ngModel)]="dataRow.ID_MES">
+                            <option value="1">01 - JANEIRO</option>
+                            <option value="2">02 - FEVEREIRO</option>
+                            <option value="3">03 - MARÇO</option>
+                            <option value="4">04 - ABRIL</option>
+                            <option value="5">05 - MAIO</option>
+                            <option value="6">06 - JUNHO</option>
+                            <option value="7">07 - JULHO</option>
+                            <option value="8">08 - AGOSTO</option>
+                            <option value="9">09 - SETEMBRO</option>
+                            <option value="10">10 - OUTUBRO</option>
+                            <option value="11">11 - NOVEMBRO</option>
+                            <option value="12">12 - DEZEMBRO</option>
+                        </select>
+                    </div>
 
-                <input
-                type="text"
-                name="NM_ENTIDADE"
-                id="NM_ENTIDADE"
-                [(ngModel)]="dataRow.NM_ENTIDADE"
-                >
-
-                <label for="CD_USUARIO">
-                    Usuário:
-                </label>
-    
-                <input
-                type="text"
-                name="CD_USUARIO"
-                id="CD_USUARIO"
-                [(ngModel)]="dataRow.CD_USUARIO"
-                >
-    
-                <label for="HS_SENHA">
-                    Senha:
-                </label>
-    
-                <input
-                type="password"
-                name="HS_SENHA"
-                id="HS_SENHA"
-                [(ngModel)]="dataRow.HS_SENHA"
-                >
-
-                <select name="ID_ANO" id="ID_ANO">
-                    <option value="2025">2025</option>
-                    <option value="2026">2026</option>
-                </select>
-    
-                <button type="submit">
-                    Entrar
-                </button>
-            </form>
+                    <div class="input-group">
+                        <label for="ID_ANO">Ano-calendário:</label>
+                        <select name="ID_ANO" id="ID_ANO" [(ngModel)]="dataRow.ID_ANO">
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                        </select>
+                    </div>
+        
+                    <button type="submit" class="btn-primary">Entrar</button>
+                </form>
+            </div>
         </div>
     </div>
 </section>

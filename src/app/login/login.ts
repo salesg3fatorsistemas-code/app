@@ -14,7 +14,9 @@ export class Login implements OnInit{
   dataRow = {
     NM_ENTIDADE:  ''  ,
     CD_USUARIO:   ''  ,
-    HS_SENHA:     ''  
+    HS_SENHA:     ''  ,
+    ID_ANO: 2026      ,
+    ID_MES: 3
   }
 
   CD_ALIAS : string | null = ''
@@ -32,6 +34,7 @@ export class Login implements OnInit{
     let data = await this.sessao.consultarEntidade(this.CD_ALIAS)
 
     this.dataRow.NM_ENTIDADE = data.NM_ENTIDADE
+
     this.cdr.detectChanges()
   }
 
@@ -39,6 +42,8 @@ export class Login implements OnInit{
     let data = await this.sessao.loginRequest(this.dataRow)
 
     if(data.sucesso){
+      this.sessao.ID_ANO = this.dataRow.ID_ANO
+      this.sessao.ID_MES = this.dataRow.ID_MES
       this.router.navigate([`${this.CD_ALIAS}/dashboard`])
     }
     else{
