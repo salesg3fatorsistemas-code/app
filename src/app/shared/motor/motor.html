@@ -30,9 +30,10 @@
             name="BUSCAR"
             id="BUSCAR"
             class="inp-buscar"
+            [(ngModel)]="termoBusca"
             >
             
-            <button class="btn-crud">
+            <button class="btn-crud" (click)="dadosGrid()">
                 Buscar
             </button>
         </div>
@@ -86,6 +87,7 @@
                     [name]="campo.nome"
                     [id]="campo.nome"
                     [(ngModel)]="dataRow[campo.nome]"
+                    [required]="campo.required"
                     >
 
                     <select
@@ -98,6 +100,22 @@
                             {{ opt.label }}
                         </option>
                     </select>
+
+                    <input
+                    *ngSwitchCase="'checkbox'"
+                    type="checkbox"
+                    [name]="campo.nome"
+                    [id]="campo.nome"
+                    [(ngModel)]="dataRow[campo.nome]"
+                    [value]="campo.check"
+                    >
+
+                    <textarea
+                    *ngSwitchCase="'textarea'"
+                    [name]="campo.nome"
+                    [id]="campo.nome"
+                    [(ngModel)]="dataRow[campo.nome]"
+                    ></textarea>
 
                 </ng-container>
 

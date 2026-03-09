@@ -109,7 +109,9 @@
     color: #34495e;
 }
 
-.grupo-form select, .grupo-form input {
+.grupo-form select,
+.grupo-form input,
+.grupo-form textarea {
     padding: 0.35rem;
     border: 1px solid #cbd5e1;
     border-radius: 0.5rem;
@@ -122,6 +124,28 @@
     box-sizing: border-box; 
 }
 
+.grupo-form textarea {
+    resize: none; 
+    min-height: 80px; 
+    line-height: 1.5; 
+}
+
+.grupo-form :required{
+    border-color:tomato;
+}
+
+.grupo-form label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #34495e;
+}
+
+.grupo-form input[type="checkbox"] {
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+    accent-color: #3b82f6; 
+}
 
 /* Responsividade: No celular, forçamos todas as divs a terem 100% da largura, 
    ignorando o rem que você digitou no HTML */

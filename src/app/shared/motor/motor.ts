@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { LoginService } from '../../services/login-service';
 import { Service } from './service';
 
 @Component({
@@ -20,18 +19,25 @@ export class Motor {
   @Input() tabela: string = ''
 
   telaRegistro : boolean = false
+  termoBusca: string = ''
 
-  constructor(
-    private sessao: LoginService  ,
-    private service: Service
-  ){ }
+  constructor(private service: Service, private cdr: ChangeDetectorRef){ }
+
+  async dadosGrid(){
+    this.dataGrid = await this.service.dadosGrid(this.tabela, this.termoBusca, this.colunas)
+  }
 
   async incluirRegistro(){
     let data = await this.service.codigoRegistro(this.tabela)
+
+    this.dataRow = data
     this.telaRegistro = true
+    this.cdr.detectChanges()
   }
   
-  salvarRegistro(){
-    
+  async salvarRegistro(){
+    let data = await this.service.salvarRegistro(this.tabela, this.dataRow)
+
+    alert(data.mensagem)
   }
 }
