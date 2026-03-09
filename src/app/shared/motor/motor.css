@@ -1,0 +1,136 @@
+/* Card principal da página */
+.componente {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    width:calc(100% - 3rem);
+    min-height: 80vh; 
+}
+
+/* Cabeçalho */
+.cabecalho {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 1rem;
+}
+
+.titulo {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Barra de Ferramentas */
+.ferramentas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.crud, .buscar {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-crud {
+    width: 7.5rem;
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+}
+
+.inp-buscar {
+    padding: 0.6rem 1rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    outline: none;
+    width: 250px;
+    transition: border-color 0.3s;
+}
+
+/* Tabela dataGrid*/
+.tabela-container {
+    overflow-x: auto; /* Adiciona barra de rolagem horizontal se a tabela for muito larga */
+}
+
+.data-grid {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.data-grid th {
+    background-color: #f8fafc;
+    padding: .5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.data-grid td {
+    padding: .5rem;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* Tela de Registro */
+.registro-container {
+    padding: 1rem 0;
+    margin-top: 1rem;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.formulario {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 1.5rem 1rem; 
+    align-items: flex-start;
+}
+
+.grupo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    box-sizing: border-box; 
+}
+
+.grupo-form label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #34495e;
+}
+
+.grupo-form select, .grupo-form input {
+    padding: 0.35rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    background-color: #f8fafc;
+    color: #333;
+    transition: all 0.3s ease;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box; 
+}
+
+
+/* Responsividade: No celular, forçamos todas as divs a terem 100% da largura, 
+   ignorando o rem que você digitou no HTML */
+@media (max-width: 768px) {
+    .form-group, .form-group-checkbox {
+        width: 100% !important; 
+    }
+    
+    .form-group-checkbox {
+        align-items: flex-start;
+    }
+}

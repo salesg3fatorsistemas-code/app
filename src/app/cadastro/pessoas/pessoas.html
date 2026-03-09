@@ -1,1 +1,98 @@
-<p>pessoas works!</p>
+<section class="page-card">
+    
+    <header class="page-header">
+        <h1 class="page-title">Cadastro de Pessoas</h1>
+    </header>
+
+    <div class="action-bar"  *ngIf="!telaCadastro">
+        
+        <div class="tools-group">
+            <button class="btn-tool btn-primary" (click)="telaCadastro = true">Incluir</button>
+            
+            <button class="btn-tool btn-secondary">Alterar</button>
+            <button class="btn-tool btn-secondary">Consultar</button>
+            
+            <button class="btn-tool btn-danger">Excluir</button>
+        </div>
+
+        <div class="search-group">
+            <input type="text" class="search-input" placeholder="Buscar por nome ou CPF/CNPJ...">
+            <button class="btn-tool btn-search">Pesquisar</button>
+        </div>
+
+    </div>
+
+    <div class="table-container"  *ngIf="!telaCadastro">
+        <table class="data-grid">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>CPF/CNPJ</th>
+                    <th>Ativo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Exemplo de Cliente Silva</td>
+                    <td>000.000.000-00</td>
+                    <td>Sim</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="telaCadastro" class="action-bar">
+        <div class="tools-group">
+            <button class="btn-tool btn-secondary">Salvar +</button>
+            <button class="btn-tool btn-primary">Salvar</button>
+            <button class="btn-tool btn-danger" onClick="telaCadastro = false">Cancelar</button>
+        </div>
+    </div>
+
+    <div *ngIf="telaCadastro" class="form-container">
+    
+        <div class="form-row">
+            
+            <div class="form-group" style="width: 8rem;">
+                <label for="CD_PESSOA">Código:</label>
+                <input type="number" name="CD_PESSOA" id="CD_PESSOA">
+            </div>
+
+            <div class="form-group" style="width: 20rem;">
+                <label for="NM_PESSOA">Nome:</label>
+                <input type="text" name="NM_PESSOA" id="NM_PESSOA">
+            </div>
+
+            <div class="form-group" style="width: 10rem;">
+                <label for="TP_PESSOA">Tipo:</label>
+                <select name="TP_PESSOA" id="TP_PESSOA">
+                    <option value="F">Física</option>
+                    <option value="J">Jurídica</option>
+                </select>
+            </div>
+
+            <div class="form-group-checkbox" style="width: 5rem;">
+                <label for="SN_ATIVO">Ativo:</label>
+                <input type="checkbox" name="SN_ATIVO" id="SN_ATIVO">
+            </div>
+
+            <div class="form-group" style="width: 15rem;">
+                <label for="CADASTRO">CPF/CNPJ:</label>
+                <input type="text" name="CADASTRO" id="CADASTRO">
+            </div>
+
+            <div class="form-group" style="width: 15rem;">
+                <label for="CEL_CONTATO">Contato:</label>
+                <input type="tel" name="CEL_CONTATO" id="CEL_CONTATO">
+            </div>
+
+            <div class="form-group" style="width: 15rem;">
+                <label for="HISTORICO">Histórico:</label>
+                <textarea name="HISTORICO" id="HISTORICO">
+                </textarea>
+            </div>
+        </div>
+    </div>
+</section>

@@ -26,8 +26,8 @@ export class LoginService {
 
     let data = await request.json()
 
-    this.ID_ENTIDADE = data.ID_ENTIDADE
-    this.NM_ENTIDADE = data.NM_ENTIDADE
+    this.ID_ENTIDADE = data.entidade.ID_ENTIDADE
+    this.NM_ENTIDADE = data.entidade.NM_ENTIDADE
     
     return data
   }
@@ -45,6 +45,9 @@ export class LoginService {
     if(data.sucesso){
       this.ID_USUARIO = data.ID_USUARIO
       this.NM_USUARIO = data.NM_USUARIO
+      this.ID_MES = data.ID_MES
+      this.ID_ANO = data.ID_ANO
+      this.DS_MES = data.DS_MES
     }
 
     return data
