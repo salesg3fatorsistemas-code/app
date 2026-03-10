@@ -47,4 +47,16 @@ export class Service {
     return data
   }
 
+  async consultarRegistro(tabela: string, ID_REGISTRO: number){
+
+    let request = await fetch(environment.API + tabela + '/' + ID_REGISTRO + '/consultar', {
+      method: "GET",
+      headers: environment.headers
+    })
+
+    let data = await request.json()
+
+    return data[0]
+  }
+
 }

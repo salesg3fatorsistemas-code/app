@@ -82,6 +82,11 @@
     border-bottom: 1px solid #f1f5f9;
 }
 
+.gridRow{
+    background-color: #3b82f6;
+    color: white;
+}
+
 /* Tela de Registro */
 .registro-container {
     padding: 1rem 0;
@@ -145,6 +150,69 @@
     height: 1.25rem;
     cursor: pointer;
     accent-color: #3b82f6; 
+}
+
+/* Dialog Avisos*/
+.dialog-box {
+    border: none; 
+    background: #ffffff;
+    width: 90%;
+    max-width: 400px;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.dialog-box[open] {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Base do Ícone */
+.img-dialog {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.img-dialog img {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.msg-dialog {
+    margin: 0 0 2rem 0;
+    color: #64748b;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.btn-dialog {
+    width: 100%;
+    padding: 0.85rem;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: #3b82f6
+}
+
+.btn-dialog:active { transform: scale(0.97); }
+
+/* Animação suave de entrada */
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 /* Responsividade: No celular, forçamos todas as divs a terem 100% da largura, 

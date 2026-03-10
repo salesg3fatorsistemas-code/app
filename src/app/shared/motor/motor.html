@@ -15,7 +15,7 @@
                 Alterar
             </button>
             
-            <button class="btn-crud">
+            <button class="btn-crud" (click)="consultarRegistro()">
                 Consultar
             </button>
 
@@ -62,7 +62,11 @@
             </thead>
 
             <tbody>
-                <tr *ngFor="let row of dataGrid">
+                <tr *ngFor="let row of dataGrid"
+                [id]="row['ID_' + tabela]"
+                (click)="dataRow['ID_' + tabela] = row['ID_' + tabela]"
+                [ngClass]="{'gridRow': row['ID_' + tabela] === dataRow['ID_' + tabela]}"
+                >
                     <td *ngFor="let col of colunas">
                         {{ row[col.field] }}
                     </td>
@@ -124,3 +128,26 @@
         </div>
     </div>
 </section>
+
+<dialog class="dialog-box" #dialog>
+    
+    <div class="img-dialog" *ngIf="dialogSucesso">
+        <img src="check.svg" alt="check">
+    </div>
+
+    <div class="img-dialog" *ngIf="!dialogSucesso">
+        <img src="cross.svg" alt="cross">
+    </div>
+
+    <span class="msg-dialog">
+        {{ dialogMensagem }}
+    </span>
+
+    <button
+    class="btn-dialog"
+    (click)="fecharDialog()"
+    >
+        OK
+    </button>
+
+</dialog>
