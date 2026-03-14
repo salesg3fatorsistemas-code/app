@@ -5,26 +5,41 @@
         </span>
     </div>
 
-    <div class="ferramentas" *ngIf="!telaRegistro">
+    <div class="ferramentas" *ngIf="!telaRegistro || modoConsulta">
         <div class="crud">
-            <button class="btn-crud" (click)="incluirRegistro()">
+            <button
+            class="btn-crud"
+            (click)="incluirRegistro()"
+            >
                 Incluir
             </button>
 
-            <button class="btn-crud">
+            <button
+            class="btn-crud"
+            (click)="telaRegistro ? modoConsulta = false : alterarRegistro()"
+            [disabled]="!dataRow['ID_' + tabela]"
+            >
                 Alterar
             </button>
             
-            <button class="btn-crud" (click)="consultarRegistro()">
+            <button
+            class="btn-crud"
+            (click)="consultarRegistro()"
+            [disabled]="!dataRow['ID_' + tabela]"
+            >
                 Consultar
             </button>
 
-            <button class="btn-crud">
+            <button
+            class="btn-crud"
+            (click)="deletarRegistro()"
+            [disabled]="!dataRow['ID_' + tabela]"
+            >
                 Excluir
             </button>
         </div>
 
-        <div class="buscar">
+        <div class="buscar" *ngIf="!telaRegistro">
             <input
             type="search"
             name="BUSCAR"
@@ -37,15 +52,22 @@
                 Buscar
             </button>
         </div>
+
+        <div class="buscar" *ngIf="telaRegistro && modoConsulta">
+            
+            <button class="btn-crud" (click)="cancelarRegistro()">
+                Voltar
+            </button>
+        </div>
     </div>
 
-    <div class="ferramentas" *ngIf="telaRegistro">
+    <div class="ferramentas" *ngIf="telaRegistro && !modoConsulta">
         <div class="crud">
-            <button class="btn-crud" (click)="salvarRegistro()">
+            <button class="btn-crud" (click)=" modoEditando ? salvarAlteracao() : salvarRegistro()">
                 Salvar
             </button>
 
-            <button class="btn-crud" (click)="telaRegistro = false">
+            <button class="btn-crud" (click)="cancelarRegistro()">
                 Cancelar
             </button>
         </div>
@@ -92,6 +114,8 @@
                     [id]="campo.nome"
                     [(ngModel)]="dataRow[campo.nome]"
                     [required]="campo.required"
+                    [ngClass]="{ 'teste' : campo.required && !dataRow[campo.nome] }"
+                    [disabled]="modoConsulta"
                     >
 
                     <select
@@ -99,6 +123,9 @@
                     [name]="campo.nome"
                     [id]="campo.nome"
                     [(ngModel)]="dataRow[campo.nome]"
+                    [required]="campo.required"
+                    [ngClass]="{ 'teste' : campo.required && !dataRow[campo.nome] }"
+                    [disabled]="modoConsulta"
                     >
                         <option *ngFor="let opt of campo.opcoes" [value]="opt.value">
                             {{ opt.label }}
@@ -111,7 +138,9 @@
                     [name]="campo.nome"
                     [id]="campo.nome"
                     [(ngModel)]="dataRow[campo.nome]"
-                    [value]="campo.check"
+                    [required]="campo.required"
+                    [ngClass]="{ 'teste' : campo.required && !dataRow[campo.nome] }"
+                    [disabled]="modoConsulta"
                     >
 
                     <textarea
@@ -119,7 +148,32 @@
                     [name]="campo.nome"
                     [id]="campo.nome"
                     [(ngModel)]="dataRow[campo.nome]"
+                    [disabled]="modoConsulta"
                     ></textarea>
+                    
+                    <div *ngSwitchCase="'lookup'" class="lookup-container">
+                        <input
+                            type="text"
+                            [name]="campo.lookup.display"
+                            [id]="campo.lookup.display"
+                            [(ngModel)]="dataRow[campo.lookup.display]"
+                            [required]="campo.required"
+                            [ngClass]="{ 'teste' : campo.required && !dataRow[campo.nome] }"
+                            class="lookup-input"
+                            readonly
+                        >
+                        
+                        <button 
+                            type="button" 
+                            class="btn-lookup"
+                            (click)="abrirModalLookup(campo)" 
+                            [disabled]="modoConsulta"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-lookup">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                            </svg>
+                        </button>
+                    </div>
 
                 </ng-container>
 
@@ -150,4 +204,32 @@
         OK
     </button>
 
+</dialog>
+
+<dialog #dialogLookup class="dialog-padrao">
+    <div class="dialog-header">
+        <h3>Selecione um registro</h3>
+        <button type="button" class="btn-fechar" (click)="fecharModalLookup()">X</button>
+    </div>
+
+    <div class="dialog-body-lookup">
+        <table class="table-lookup">
+            <thead>
+                <tr>
+                    <th *ngFor="let col of colunasGridLookupAtuais">{{ col.header }}</th>
+                    <th class="col-acao">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of dadosGridLookup">
+                    <td *ngFor="let col of colunasGridLookupAtuais">{{ row[col.field] }}</td>
+                    <td class="col-acao">
+                        <button type="button" class="btn-confirmar" (click)="selecionarRegistroLookup(row)">
+                            Confirmar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </dialog>

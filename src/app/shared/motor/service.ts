@@ -59,4 +59,38 @@ export class Service {
     return data[0]
   }
 
+  async alterarRegistro(tabela: string, dataRow: object) {
+
+    let request = await fetch(environment.API + tabela + '/' + this.sessao.ID_ENTIDADE + '/update', {
+      method: "PUT",
+      headers: environment.headers,
+      body: JSON.stringify(dataRow)
+    });
+
+    let data = await request.json();
+
+    return data  
+  }
+
+  async excluirRegistro(tabela: string, idRegistro: number) {
+    let request = await fetch(`${environment.API}${tabela}/${idRegistro}/delete`, {
+      method: "DELETE",
+      headers: environment.headers
+    });
+
+    let data = await request.json()
+    return data
+  }
+
+  async consultarLookup(tabela: string, colunas: string[]) {
+    let request = await fetch(`${environment.API}${tabela}/${this.sessao.ID_ENTIDADE}/lookup`, {
+        method: "POST",
+        headers: environment.headers,
+        body: JSON.stringify({ colunas })
+    });
+
+    let data = await request.json()
+
+    return data
+}
 }

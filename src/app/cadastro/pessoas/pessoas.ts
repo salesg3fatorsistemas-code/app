@@ -9,6 +9,7 @@ import { Motor } from '../../shared/motor/motor';
 })
 export class Pessoas {
 
+  // Colunas da Grid de Registros
   colunasGrid = [
     {header: "Código", field: "CD_PESSOA", width: "15%"},
     {header: "Nome", field: "NM_PESSOA", width: "40%"},
@@ -16,6 +17,7 @@ export class Pessoas {
     {header: "Ativo", field: "SN_ATIVO", width: "20%"},
   ]
 
+  // Campos do Forumlário
   formCampos = [
     {width: "6rem", nome: "CD_PESSOA", label: "Código:", tipo: "text", required: true},
     {width: "42rem", nome: "NM_PESSOA", label: "Nome:", tipo: "text", required: true},
@@ -23,7 +25,7 @@ export class Pessoas {
       {label: "Física", value: "F"},
       {label: "Jurídica", value: "J"}
     ]},
-    {width: "2.5rem", nome: "SN_ATIVO", label: "Ativo:", tipo: "checkbox", required: false, check: true},
+    {width: "2.5rem", nome: "SN_ATIVO", label: "Ativo:", tipo: "checkbox", required: false},
     {width: "10rem", nome: "CADASTRO", label: "CPF/CNPJ:", tipo: "text", required: true},
     {width: "10rem", nome: "CONTATO", label: "Celular:", tipo: "text", required: false},
     {width: "100%", nome: "HISTORICO", label: "Histórico:", tipo: "textarea", required: false},
@@ -32,5 +34,8 @@ export class Pessoas {
 
   dataGrid = []
 
-  dataRow = {}
+  // Valores Padrão:
+  dataRow: any = {
+    SN_ATIVO: true
+  }
 }

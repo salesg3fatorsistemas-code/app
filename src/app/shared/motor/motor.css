@@ -83,8 +83,9 @@
 }
 
 .gridRow{
-    background-color: #3b82f6;
-    color: white;
+    background-color: #f8fafc;
+    color: #3b82f6;
+    transition: all 0.3s ease;
 }
 
 /* Tela de Registro */
@@ -135,8 +136,10 @@
     line-height: 1.5; 
 }
 
-.grupo-form :required{
-    border-color:tomato;
+.teste{
+    border: 1px solid #ef4444 !important;
+    transition: all 0.3s ease !important;
+
 }
 
 .grupo-form label {
@@ -208,6 +211,75 @@
 }
 
 .btn-dialog:active { transform: scale(0.97); }
+
+/* --- COMPONENTE LOOKUP --- */
+.lookup-container {
+    display: flex;
+    gap: 5px;
+}
+
+.lookup-input {
+    cursor: not-allowed;
+    background-color: #f8fafc;
+}
+
+.btn-lookup {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-lookup {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* --- MODAL LOOKUP --- */
+.dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-fechar {
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    background: transparent;
+}
+
+.dialog-body-lookup {
+    margin-top: 1rem;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.table-lookup {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-lookup th {
+    border-bottom: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.table-lookup td {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.table-lookup .col-acao {
+    text-align: center;
+    width: 100px;
+}
+
+.btn-confirmar {
+    cursor: pointer;
+    padding: 4px 8px;
+}
 
 /* Animação suave de entrada */
 @keyframes popIn {

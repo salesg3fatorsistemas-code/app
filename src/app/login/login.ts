@@ -39,6 +39,11 @@ export class Login implements OnInit{
     this.dataRow.NM_ENTIDADE = data.entidade['NM_ENTIDADE']
     this.acessoAnos = data.anos
 
+    let dataAtual = new Date();
+    
+    this.dataRow.ID_MES = (dataAtual.getMonth() + 1);
+    this.dataRow.ID_ANO = dataAtual.getFullYear();
+
     this.cdr.detectChanges()
   }
 
