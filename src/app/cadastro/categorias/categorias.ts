@@ -39,7 +39,8 @@ export class Categorias {
       required: true,
       opcoes: [
         {label: 'Receita', value: 'R'},
-        {label: 'Despesa', value: 'D'}
+        {label: 'Despesa', value: 'D'},
+        {label: 'Produto', value: 'P'},
       ]
     },
     {

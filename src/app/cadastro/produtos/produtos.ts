@@ -12,7 +12,7 @@ export class Produtos {
   colunasGrid: IColunaGrid[] = [
     {field: 'CD_PRODUTO', header: 'Código:', width: '15%'},
     {field: 'NM_PRODUTO', header: 'Produto:', width: '50%'},
-    {field: 'ID_CATEGORIA', header: 'Categoria:', width: '15%'},
+    {field: 'NM_CATEGORIA', header: 'Categoria:', width: '15%'},
     {field: 'SN_ATIVO', header: 'Ativo:', width: '20%'},
   ]
 
@@ -64,5 +64,9 @@ export class Produtos {
 
   dataRow: any = {
     SN_ATIVO: true
+  }
+
+  dataView: any = {
+    NM_CATEGORIA: ''
   }
 }

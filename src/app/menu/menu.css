@@ -98,3 +98,114 @@
     padding: 2rem;
     overflow-y: auto; /* Se o conteúdo da tela for grande, rola apenas esta parte */
 }
+
+/* ESTRUTURA PRINCIPAL DO MENU */
+.menu-lateral {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Ocupa a altura total do ecrã */
+    width: 260px;
+    background-color: #1e293b; /* Cor de fundo escura */
+    color: #f8fafc;
+}
+
+/* ÍCONES GENÉRICOS */
+.icone {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* --- ESTILOS DA PASTA --- */
+.pasta-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.pasta-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid #334155;
+}
+
+.pasta-cabecalho:hover {
+    background-color: #334155;
+}
+
+.pasta-titulo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* Animação da Seta */
+.icone-seta {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.icone-seta.aberta {
+    transform: rotate(180deg);
+}
+
+/* Conteúdo interno da Pasta (Animação de abrir/fechar) */
+.pasta-conteudo {
+    display: flex;
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    background-color: #0f172a; /* Fundo ligeiramente mais escuro para os sub-itens */
+}
+
+.pasta-conteudo.expandido {
+    max-height: 400px; /* Valor seguro para revelar todos os sub-itens */
+}
+
+/* --- ESTILOS DOS ITENS (LINKS) --- */
+.item-menu {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    gap: 0.75rem;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.item-menu:hover {
+    color: #ffffff;
+    background-color: #1e293b;
+}
+
+/* Recuo extra para os itens dentro da pasta */
+.item-menu.sub-item {
+    padding-left: 3.5rem; 
+}
+
+/* Estilo para quando a rota está ativa */
+.item-menu.ativo {
+    color: #38bdf8;
+    font-weight: 600;
+    background-color: rgba(56, 189, 248, 0.1);
+    border-left: 3px solid #38bdf8;
+    padding-left: calc(3.5rem - 3px); /* Compensa a borda para não empurrar o texto */
+}
+
+/* --- RODAPÉ (SAIR) --- */
+.menu-rodape {
+    margin-top: auto; /* A propriedade "auto" empurra este bloco para o limite inferior */
+    border-top: 1px solid #334155;
+}
+
+.item-menu.sair:hover {
+    color: #ef4444; /* Vermelho de aviso ao passar o rato */
+}

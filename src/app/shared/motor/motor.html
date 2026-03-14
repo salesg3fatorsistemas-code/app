@@ -156,7 +156,7 @@
                             type="text"
                             [name]="campo.lookup.display"
                             [id]="campo.lookup.display"
-                            [(ngModel)]="dataRow[campo.lookup.display]"
+                            [(ngModel)]="dataView[campo.lookup.display]"
                             [required]="campo.required"
                             [ngClass]="{ 'teste' : campo.required && !dataRow[campo.nome] }"
                             class="lookup-input"
@@ -166,7 +166,7 @@
                         <button 
                             type="button" 
                             class="btn-lookup"
-                            (click)="abrirModalLookup(campo)" 
+                            (click)="abrirLookup(campo)"
                             [disabled]="modoConsulta"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-lookup">
@@ -206,7 +206,7 @@
 
 </dialog>
 
-<dialog #dialogLookup class="dialog-padrao">
+<dialog #lookup class="dialog-padrao">
     <div class="dialog-header">
         <h3>Selecione um registro</h3>
         <button type="button" class="btn-fechar" (click)="fecharModalLookup()">X</button>
@@ -216,15 +216,15 @@
         <table class="table-lookup">
             <thead>
                 <tr>
-                    <th *ngFor="let col of colunasGridLookupAtuais">{{ col.header }}</th>
+                    <th *ngFor="let col of colunasLookup">{{ col.header }}</th>
                     <th class="col-acao">Ação</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let row of dadosGridLookup">
-                    <td *ngFor="let col of colunasGridLookupAtuais">{{ row[col.field] }}</td>
+                <tr *ngFor="let row of dataLookup">
+                    <td *ngFor="let col of colunasLookup">{{ row[col.field] }}</td>
                     <td class="col-acao">
-                        <button type="button" class="btn-confirmar" (click)="selecionarRegistroLookup(row)">
+                        <button type="button" class="btn-confirmar" (click)="selecionarLookup(row)">
                             Confirmar
                         </button>
                     </td>

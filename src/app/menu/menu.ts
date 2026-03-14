@@ -13,5 +13,11 @@ export class Menu {
   constructor(
     public sessao: LoginService ,
   ){ }
+  pastaCadastrosAberta: boolean = false;
+
+  alternarPastaCadastros() {
+    this.pastaCadastrosAberta = !this.pastaCadastrosAberta;
+  }
+  
 
 }

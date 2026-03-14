@@ -12,9 +12,10 @@ export class Pessoas {
   // Colunas da Grid de Registros
   colunasGrid = [
     {header: "Código", field: "CD_PESSOA", width: "15%"},
-    {header: "Nome", field: "NM_PESSOA", width: "40%"},
-    {header: "CPF/CNPJ", field: "CADASTRO", width: "25%"},
-    {header: "Ativo", field: "SN_ATIVO", width: "20%"},
+    {header: "Nome", field: "NM_PESSOA", width: "30%"},
+    {header: "Tipo", field: "TP_PESSOA", width: "20%"},
+    {header: "CPF/CNPJ", field: "CADASTRO", width: "20%"},
+    {header: "Ativo", field: "SN_ATIVO", width: "15%"},
   ]
 
   // Campos do Forumlário

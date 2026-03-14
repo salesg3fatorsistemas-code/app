@@ -16,6 +16,7 @@ export class Motor implements OnInit {
   @Input() formCampos: Array<any> = []
   @Input() dataRow: any = {}
   @Input() tabela: string = ''
+  @Input() dataView: any = {}
 
   telaRegistro : boolean = false
   dialogSucesso: boolean = false
@@ -24,14 +25,21 @@ export class Motor implements OnInit {
   termoBusca: string = ''
   dialogMensagem: string = ''
   dataRowLimpo: any = { }
+  dataViewLimpo: any = { }
   dataGrid : Array<any> = []
+  
+  dataLookup: Array<any> = []
+  campoLookup: any = null;
+  colunasLookup: any[] = [];
 
   @ViewChild('dialog') dialogRef!: ElementRef<HTMLDialogElement>;
+  @ViewChild('lookup') lookup!: ElementRef<HTMLDialogElement>;
 
   constructor(private service: Service, private cdr: ChangeDetectorRef){ }
 
   ngOnInit(): void {
     this.dataRowLimpo = { ... this.dataRow}
+    this.dataViewLimpo = { ... this.dataView}
   }
 
   async dadosGrid(){
@@ -43,6 +51,7 @@ export class Motor implements OnInit {
     let data = await this.service.codigoRegistro(this.tabela)
 
     this.dataRow = { ...this.dataRowLimpo, ...data}
+    this.dataView = { ... this.dataViewLimpo }
     this.telaRegistro = true
     this.modoConsulta = false
     this.cdr.detectChanges()
@@ -67,6 +76,14 @@ export class Motor implements OnInit {
     let data = await this.service.consultarRegistro(this.tabela, this.dataRow['ID_' + this.tabela])
 
     this.dataRow = data
+
+    for(let campo of this.formCampos){
+      if(campo.tipo == 'lookup'){
+        let item = this.dataLookup.find(item => item[campo.nome] == this.dataRow[campo.nome])
+        this.dataView[campo.lookup.display] = item[campo.lookup.display]
+      }
+    }
+
     this.telaRegistro = true
     this.modoConsulta = true
     
@@ -123,6 +140,7 @@ export class Motor implements OnInit {
     this.telaRegistro = false
     this.modoConsulta = false
     this.modoEditando = false
+    this.dataView = this.dataViewLimpo
     this.cdr.detectChanges()
   }
 
@@ -132,43 +150,33 @@ export class Motor implements OnInit {
     this.dialogRef.nativeElement.close()
   }
 
+  async abrirLookup(campo: any) {
+    this.campoLookup = campo;
+    this.colunasLookup = campo.lookup.colunas;
 
+    let colunas = campo.lookup.colunas.map((c: any) => c.field);
 
-  // Referência para a modal no HTML
-  @ViewChild('dialogLookup') dialogLookupRef!: ElementRef<HTMLDialogElement>;
+    this.dataLookup = await this.service.consultarLookup(campo.lookup.tabela, colunas);
 
-  // Variáveis de estado exclusivas para a Modal de Lookup
-  dadosGridLookup: any[] = [];
-  colunasGridLookupAtuais: any[] = [];
-  campoLookupAtual: any = null;
+    console.log(this.dataView)
 
-  async abrirModalLookup(campo: any) {
-    this.campoLookupAtual = campo;
-    this.colunasGridLookupAtuais = campo.lookup.colunas;
-
-    const colunasParaApi = campo.lookup.colunas.map((c: any) => c.field);
-
-    // Chama o serviço que você já criou
-    this.dadosGridLookup = await this.service.consultarLookup(campo.lookup.tabela, colunasParaApi);
 
     this.cdr.detectChanges()
-    this.dialogLookupRef.nativeElement.showModal();
+    this.lookup.nativeElement.showModal();
   }
 
-  selecionarRegistroLookup(linhaClicada: any) {
-    // 1. Alimenta o ID real no dataRow (Ex: ID_CATEGORIA = 5)
-    this.dataRow[this.campoLookupAtual.nome] = linhaClicada[this.campoLookupAtual.nome];
-    
-    // 2. Alimenta a descrição no displayField (Ex: NM_CATEGORIA = 'Eletrônicos')
-    this.dataRow[this.campoLookupAtual.lookup.display] = linhaClicada[this.campoLookupAtual.lookup.display];
+  selecionarLookup(row: any) {
+    this.dataRow[this.campoLookup.nome] = row[this.campoLookup.nome];
+    this.dataView[this.campoLookup.lookup.display] = row[this.campoLookup.lookup.display];
+
+    console.log(this.dataView)
 
     this.cdr.detectChanges()
     this.fecharModalLookup();
   }
 
   fecharModalLookup() {
-    this.dadosGridLookup = [];
-    this.dialogLookupRef.nativeElement.close();
+    this.lookup.nativeElement.close();
   }
 }
 
